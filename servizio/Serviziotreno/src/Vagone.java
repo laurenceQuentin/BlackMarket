@@ -1,5 +1,6 @@
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Set;
 
 public class Vagone {
@@ -10,6 +11,7 @@ public class Vagone {
     public Vagone(Set<Posto> posti, Tipologia tipo) {
         this.posti = posti;
         this.tipo = tipo;
+        
     }
 
     public Set<Posto> getPosti() {

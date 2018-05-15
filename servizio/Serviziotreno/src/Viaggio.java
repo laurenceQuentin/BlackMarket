@@ -19,7 +19,7 @@ public class Viaggio implements Comparable {
         this.data = data;
         this.modalita=modalita;
         this.registro=new Registro();
-        this.registro.registrazione(treno);
+        this.registro.tracciaposti(treno);
     }
 
     public Treno getTreno() {

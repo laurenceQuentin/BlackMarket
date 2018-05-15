@@ -48,6 +48,12 @@ public class Itinerario {
     b1=controllostazione(st1);
     b2=controllostazione(st2);
     
+    if(st1.equals(st2)){
+    
+        return 0;
+    
+    }
+    
     if(b2<b1){
         temp=st1;
         st1=st2;

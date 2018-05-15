@@ -1,6 +1,5 @@
 
 import java.util.ArrayList;
-import static java.util.Calendar.MONTH;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -13,20 +12,22 @@ public class Tester {
     public static void main(String args[]){
         
         HashMap<Integer,Tratta> strada=new HashMap();
-        strada.put(1,new Tratta("genova","pavia",20));
-        strada.put(2,new Tratta("pavia","milano",25));
-        strada.put(3,new Tratta("milano","modena",30));
-        strada.put(4,new Tratta("modena","bologna",15));
+        strada.put(1,new Tratta("GENOVA","PAVIA",20));
+        strada.put(2,new Tratta("PAVIA","MILANO",25));
+        strada.put(3,new Tratta("MILANO","MODENA",30));
+        strada.put(4,new Tratta("MODENA","BOLOGNA",15));
         
         
         HashMap<Integer,Tratta> strada1=new HashMap();
-        strada1.put(1,new Tratta("firenze","torino",60));
-        strada1.put(2,new Tratta("torino","milano",35));
-        strada1.put(3,new Tratta("milano","pisa",25));
-        strada1.put(4,new Tratta("pisa","venezia",45));
+        strada1.put(1,new Tratta("FIRENZE","TORINO",60));
+        strada1.put(2,new Tratta("TORINO","MILANO",35));
+        strada1.put(3,new Tratta("MILANO","PISA",25));
+        strada1.put(4,new Tratta("PISA","VENEZIA",45));
         
         Itinerario linea1=new Itinerario("A",strada);
         Itinerario linea2=new Itinerario("B",strada1);
+        
+    
         
         Set<Posto> p=new HashSet();
         p.add(new Posto("1A"));
@@ -65,7 +66,7 @@ public class Tester {
         fr.aggiungitreno(t2);
        
         
-       Viaggio v=new Viaggio(t,linea2,new Date(118,6,2,10,00),Modalita.DIRETTO);
+       Viaggio v=new Viaggio(t,linea2,new Date(118,6,2,9,00),Modalita.DIRETTO);
        Viaggio w=new Viaggio(t3,linea1,new Date(118,6,2,9,45),Modalita.DIRETTO);
        Viaggio y=new Viaggio(t3,linea1,new Date(118,6,2,14,00),Modalita.DIRETTO);
        Viaggio x=new Viaggio(t,linea2,new Date(118,6,2,17,30),Modalita.DIRETTO);
@@ -104,13 +105,14 @@ public class Tester {
        
        Servizioferrovario servizio=new Servizioferrovario(c,I);
        
-       Prenotazione pr=new Prenotazione("pavia","milano",new Date(118,6,2));
+       Prenotazione pr=new Prenotazione("MILANO","BOLOGNA",new Date(118,6,2));
        
        servizio.checktreno(pr);
        
        
-       servizio.stampaprezzi(1, pr);
+      // servizio.stampaprezzi(3, pr);
        
+      // servizio.visualizzaposti(2);
      
       
      

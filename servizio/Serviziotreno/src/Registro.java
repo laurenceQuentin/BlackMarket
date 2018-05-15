@@ -17,7 +17,7 @@ public class Registro {
     }
     
     
-    public void registrazione(Treno t){
+    public void tracciaposti(Treno t){
         int i,j;
         
         for(i=1;i<=t.getVagoni().size();i++){
@@ -27,15 +27,100 @@ public class Registro {
                 riservazioni.put(t.getVagoni().get(i).getPosti().iterator().next(), new ArrayList());
             
             }
-        
-        
-        
         }
     
+    }
     
+    public boolean registrazione(Posto p,String stazionep,String stazionea,Itinerario it,Modalita m){
     
+    int i,j;
+        if(!riservazioni.containsKey(p)) {
+           System.out.println("posto non esistente");
+           return false;
+        }
+        else{
+        
+            if(riservazioni.get(p).isEmpty()){
+                
+                riservazioni.get(p).add(new Occupazione(stazionep,stazionea));
+                return true;
+            
+            }
+            
+            else{
+            
+                for(i=0;i<riservazioni.get(p).size();i++){
+                    
+                    if(m==Modalita.DIRETTO){
+                        if(it.controllostazione(stazionea)>it.controllostazione(riservazioni.get(p).get(i).getStazionepartenza())){
+                            if(it.controllostazione(stazionep)<=it.controllostazione(riservazioni.get(p).get(i).getStazionepartenza())){
+                                System.out.println("Posto già occupato");
+                                return false;
+                            }
+                            
+                        }
+                        else if(it.controllostazione(stazionep)<it.controllostazione(riservazioni.get(p).get(i).getStazionearrivo())){
+                            if(it.controllostazione(stazionep)>=it.controllostazione(riservazioni.get(p).get(i).getStazionearrivo())){
+                            
+                                System.out.println("Posto già occupato");
+                                return false;
+                            }
+                        }
+                        else if(it.controllostazione(stazionep)<=it.controllostazione(riservazioni.get(p).get(i).getStazionepartenza())){
+                            if(it.controllostazione(stazionea)>=it.controllostazione(riservazioni.get(p).get(i).getStazionearrivo())){
+                            
+                                System.out.println("Posto già occupato");
+                                return false;
+                            }
+                        }
+                        else if(it.controllostazione(stazionep)>=it.controllostazione(riservazioni.get(p).get(i).getStazionearrivo())){
+                            if(it.controllostazione(stazionep)<=it.controllostazione(riservazioni.get(p).get(i).getStazionearrivo())){
+                            
+                                System.out.println("Posto già occupato");
+                                return false;
+                            }
+                        }
+
+
+                    }
+                    
+                    /*else if(m==Modalita.INVERSO){
+                        
+                        if(it.controllostazione(stazionea)<it.controllostazione(riservazioni.get(p).get(i).getStazionepartenza())){
+                            if(it.controllostazione(stazionea)>=it.controllostazione(riservazioni.get(p).get(i).getStazionearrivo())){
+                                System.out.println("Posto già occupato");
+                                return false;
+                            }
+                            
+                        }
+                        else if(it.controllostazione(stazionep)>=it.controllostazione(riservazioni.get(p).get(i).getStazionepartenza())){
+                            if(it.controllostazione(stazionep)<it.controllostazione(riservazioni.get(p).get(i).getStazionearrivo())){
+                            
+                                System.out.println("Posto già occupato");
+                                return false;
+                            }
+                        }
+                    }        
+                      
+                    
+                    }*/
+                
+                
+                }
+            
+            
+            
+            }
+        
+        
     }
     
     
     
+    
+    
+    
+    
+return true;}
+
 }
